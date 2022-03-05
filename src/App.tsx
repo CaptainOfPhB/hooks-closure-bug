@@ -1,26 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Button, Table } from 'antd';
+import { useEffect, useState } from 'react';
+import { ColumnProps } from 'antd/lib/table';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+  const [flag, setFlag] = useState(false);
+  const [columns, setColumns] = useState<ColumnProps<{}>[]>([]);
+
+  function onClick() {
+    // how to print right value
+    console.log(flag);
+  }
+
+  function init() {
+    setFlag(true);
+    setColumns([
+      { dataIndex: 'id', title: 'ID' },
+      {
+        key: 'action',
+        title: '操作',
+        render: () => {
+          return <Button onClick={onClick}>点击</Button>;
+        },
+      },
+    ]);
+  }
+
+  // eslint-disable-next-line
+  useEffect(() => init(), []);
+
+  return <Table rowKey='id' dataSource={[{ id: '123' }]} columns={columns} />;
 }
 
-export default App;
