@@ -18,9 +18,9 @@ export default function App() {
       { dataIndex: 'id', title: 'ID' },
       {
         key: 'action',
-        title: '操作',
+        title: 'Action',
         render: () => {
-          return <Button onClick={onClick}>点击</Button>;
+          return <Button onClick={onClick}>Click</Button>;
         },
       },
     ]);
